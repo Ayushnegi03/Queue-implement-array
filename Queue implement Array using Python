@@ -1,0 +1,72 @@
+#Queue implementation of Array
+class Queue:
+    def __init__(self, Size=1000):
+        self.q = [None] * Size      
+        self.capacity = Size 
+        self.front = 0              
+        self.rear = -1            
+        self.count = 0           
+    def Dequeue(self):
+        if self.Empty():
+            print('Queue Underflow!! Terminating process.')
+            exit(-1)
+        X = self.q[self.front]
+        print('Removing element…', X)
+        self.front = (self.front + 1) % self.capacity
+        self.count = self.count - 1
+        return X
+    def Enqueue(self, value):
+        if self.Full():
+            print('Overflow!! Terminating process.')
+            exit(-1)
+        print('Inserting element…', value)
+        self.rear = (self.rear + 1) % self.capacity
+        self.q[self.rear] = value
+        self.count = self.count + 1
+    def Peek(self):
+        if self.Empty():
+            print('Queue UnderFlow!! Terminating process.')
+            exit(-1)
+        return self.q[self.front]
+    def Size(self):
+        return self.count
+    def Empty(self):
+        return self.Size() == 0
+    def Full(self):
+        return self.Size() == self.capacity 
+if __name__ == '__main__':
+    print("Here is Queue implementating Array:")
+    q = Queue(5)
+    q.Enqueue(21)
+    q.Enqueue(22)
+    q.Enqueue(23)
+    q.Enqueue(24)
+    q.Enqueue(25)
+    print('The Queue size is:', q.Size())
+    print('The Front element is:', q.Peek())
+    q.Dequeue()
+    print('The Front element is:', q.Peek())
+    q.Dequeue()
+    q.Dequeue()
+    q.Dequeue()
+    q.Dequeue()
+    if q.Empty():
+        print('The queue is empty')
+    else:
+        print('The queue is not empty')
+#Output-
+#Here is Queue implementating Array:
+#Inserting element… 21
+#Inserting element… 22
+#Inserting element… 23
+#Inserting element… 24
+#Inserting element… 25
+#The Queue size is: 5
+#The Front element is: 21
+#Removing element… 21
+#The Front element is: 22
+#Removing element… 22
+#Removing element… 23
+#Removing element… 24
+#Removing element… 25
+#The queue is empty
