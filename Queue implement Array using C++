@@ -1,0 +1,103 @@
+//Queue implement Array
+#include <iostream>
+using namespace std;
+struct Queue
+{
+    int Front, Rear, Capacity;
+    int* queue;
+    Queue(int c)
+    {
+        Front = Rear = 0;
+        Capacity = c;
+        queue = new int;
+    }
+    ~Queue() { 
+        delete[] queue; 
+        
+    } 
+    void queueEnqueue(int DATA)
+    {
+        if (Capacity == Rear) 
+        {
+            printf("\nQueue is full\n");
+            return;
+        }
+        else
+        {
+            queue[Rear] = DATA;
+            Rear++;
+        }
+        return;
+    }
+    void queueDequeue()
+    {
+        if (Front == Rear) 
+        {
+            printf("\nQueue is  empty\n");
+            return;
+        }
+        else
+        {
+            for (int i = 0; i < Rear - 1; i++) 
+            {
+                queue[i] = queue[i + 1];
+            }
+            Rear--;
+        }
+        return;
+    }
+    void queueDisplay()
+    {
+        int i;
+        if (Front == Rear) {
+            printf("\nQueue is Empty\n");
+            return;
+        }
+        for (i = Front; i < Rear; i++)
+        {
+            printf(" %d <-- ", queue[i]);
+        }
+        return;
+    }
+    void queueFront()
+    {
+        if (Front == Rear) 
+        {
+            printf("\nQueue is Empty\n");
+            return;
+        }
+        printf("\nFront Element is: %d", queue[Front]);
+        return;
+    }
+};
+int main(void)
+{
+    cout<<"Here is Queue implement Array";
+    Queue Q(6);
+    Q.queueDisplay();
+    Q.queueEnqueue(21);
+    Q.queueEnqueue(31);
+    Q.queueEnqueue(41);
+    Q.queueEnqueue(51);
+    Q.queueEnqueue(61);
+    Q.queueEnqueue(71);
+    Q.queueDisplay();
+    Q.queueEnqueue(60);
+    Q.queueDisplay();
+    Q.queueDequeue();
+    Q.queueDequeue();
+    printf("\nafter two node deletion\n\n");
+    Q.queueDisplay();
+    Q.queueFront();
+    return 0;
+}
+//Output-
+//Here is Queue implement Array
+//Queue is Empty
+// 21 <--  31 <--  41 <--  51 <--  61 <--  71 <-- 
+//Queue is full
+// 21 <--  31 <--  41 <--  51 <--  61 <--  71 <-- 
+//After two node deletion
+
+// 41 <--  51 <--  61 <--  71 <-- 
+//Front Element is: 41
