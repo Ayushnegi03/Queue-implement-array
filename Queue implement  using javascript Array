@@ -84,7 +84,7 @@ class Queue
   console.log("After the last two node Deletion: ");
   q.QueueDisplay();
   q.QueueFront();
-  //Output-
+  //Output->
 //  Queue is Empty:
 //  20  <-- 
 //  30  <--
